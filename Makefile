@@ -50,3 +50,7 @@ arm64:
 	xcrun -sdk iphoneos clang src/t8015_shellcode_arm64.S -target arm64-apple-darwin -Wall -o bin/t8015_shellcode_arm64.o
 	gobjcopy -O binary -j .text bin/t8015_shellcode_arm64.o bin/t8015_shellcode_arm64.bin
 	rm bin/t8015_shellcode_arm64.o
+	
+	xcrun -sdk iphoneos clang src/s8003_shellcode_arm64.S -target arm64-apple-darwin -Wall -o bin/s8003_shellcode_arm64.o
+	gobjcopy -O binary -j .text bin/s8003_shellcode_arm64.o bin/s8003_shellcode_arm64.bin
+	rm bin/s8003_shellcode_arm64.o
